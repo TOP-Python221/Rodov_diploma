@@ -13,9 +13,11 @@ body {
 	align-items: center;
 	min-height: 100vh;
 	background-color: #222422;
-	background: url('../image/back.jpg') no-repeat;
+	background: url('../img/back.jpg') no-repeat;
 	background-size: cover;
 }
+
+
 
 .login-window{
 	display: flex;
@@ -26,6 +28,7 @@ body {
 	border-radius: 5px;
 	margin: 5px;
     z-index: 2;
+
 }
 
 .auth{
@@ -73,6 +76,9 @@ body {
 	border-radius: 5px;
 	transition: .2s;
 }
+.pass{
+	margin-top: 5px;
+}
 
 .form-btn:hover{
 	background: linear-gradient(25deg, #e1d4d4, #d7a087);
@@ -84,3 +90,5 @@ body {
 .log{
 	margin-bottom: 5px;
 }
+
+
