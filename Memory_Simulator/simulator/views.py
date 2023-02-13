@@ -11,3 +11,9 @@ def login_view(request):
         request,
         'pages/login.html'
     )
+
+def registration_view(request):
+    return render(
+        request,
+        'pages/registration.html'
+    )

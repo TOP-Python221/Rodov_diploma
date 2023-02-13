@@ -1,0 +1,24 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--	 <meta http-equiv"X-UA-Compatible" content="ie=edge">-->
+	<link type="text/css" href="{% static 'simulator/css/registration.css' %}" rel="stylesheet">
+	 <!-- <script src="js/master.js" charset="utf-8"></script> -->
+    <title>Регистрация</title>
+</head>
+<body>
+    <div class="wrapper">
+		<div class="login-window">
+			<h1 class="auth">Регистрация</h1>
+			<input type="text" placeholder="Введите имя(логин)">
+			<input type="password" placeholder="Введите пароль" class="pass">
+			<input type="password" placeholder="Подтвердите пароль" class="confirm">
+			<button class="form-btn">Зарегистрироваться</button>
+		</div>
+    </div>
+</body>
+</html>
