@@ -13,7 +13,7 @@ body {
 	align-items: center;
 	min-height: 100vh;
 	background-color: #222422;
-	background: url('../img/back.jpg') no-repeat;
+	background: url('../image/back.jpg') no-repeat;
 	background-size: cover;
 }
 
