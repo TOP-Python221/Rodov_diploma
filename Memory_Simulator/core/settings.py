@@ -99,7 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru"
 
 TIME_ZONE = "UTC"
 
@@ -111,15 +111,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+SIMULATOR_PATH = BASE_DIR / 'simulator'
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "")
-STATICFILES_DIRS = []
+STATICFILES_DIRS = [
+    SIMULATOR_PATH / 'static'
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 if __name__ == '__main__':
+    print(f'SIMULATOR_PATH >>> {SIMULATOR_PATH}')
+    print('=================================')
+    print(f'STATICFILES_DIRS >>> {STATICFILES_DIRS}')
+    print('=================================')
     print(f'BASE_DIR >>> {BASE_DIR}')
     print('=================================')
     print(f'ROOT_PATH >>> {ROOT_PATH}')
