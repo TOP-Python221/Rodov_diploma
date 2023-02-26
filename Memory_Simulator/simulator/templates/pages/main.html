@@ -1,59 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
 {% load static %}
-<head>
-	 <meta charset="UTF-8">
-	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	 <link rel="stylesheet" href="{% static 'simulator/css/main.css' %}">
-	 <script src="../js/master.js" charset="utf-8"></script> <!--Скрипт работает после загрузки дом, чтоб изменить,
-	 уберите defer -->
-     <title>Diploma_Project</title>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!--  jquery -->
-     <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"  ></script> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-	   <!-- Materialize CSS-->
-	   <!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
-	  <!-- Materialize JavaScript -->
-	   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+    <link rel="stylesheet" href="{% static 'simulator/css/main.css' %}">
 
-	<!--less -->
-	 	<!-- <link rel="stylesheet" href="css/less.css"> -->
-	   <!-- <script src="https://cdn.jsdelivr.net/npm/less"></script> -->
-	  <!-- <link rel="stylesheet" href="css/less.less">-->
+    <script src="../js/master.js" charset="utf-8"></script>
+    <!--Скрипт работает после загрузки дом, чтоб изменить, уберите defer -->
+    <title>Diploma_Project</title>
 
-	<!--bootstrap -->
- 	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
+    <!--  jquery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"  ></script> -->
 
-	 <title>{{ title }}</title>
-</head>
-    <body>
-        <div class="wrapper">
-            {% block header %}
-            <header class="header">
-                <div class="header-logo">MS</div>
-                <div class="header-menu">
-                    {% for button in menu %}
-                        <a href=" url button.url_name " class="menu-button-1"> {{button.title}} </a>
-                    {% endfor %}
-                </div>
-            </header>
-            {% endblock %}
-            {% block main %}
-            <main class="main">
-                Я МЭЙН
-            </main>
-            {% endblock %}
-            {% block footer %}
-            <footer class="footer">
-                <ul>
-                    <li><a href="#" class="footer-button-1"> Статистика </a></li>
-                    <li><a href="#" class="footer-button-2"> Рейтинги </a></li>
-                    <li><a href="#" class="footer-button-3"> Тренажёры </a></li>
-                </ul>
-            </footer>
-            {% endblock %}
-        </div>
-    </body>
+    <!-- Materialize CSS-->
+    <!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <!-- Materialize JavaScript -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+
+    <!--less -->
+    <!-- <link rel="stylesheet" href="css/less.css"> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/less"></script> -->
+    <!-- <link rel="stylesheet" href="css/less.less">-->
+
+    <!--bootstrap -->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
+
+    <title>{{ title }}</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      {% block header %}
+        <header class="header">
+          <div class="header-logo">MS</div>
+          <div class="header-menu">
+            {% for button in menu %}
+              <a href="{{ url button.url_name }}" class="menu-button-1">{{ button.title }}</a>
+            {% endfor %}
+          </div>
+        </header>
+      {% endblock header %}
+
+    {% block main %}
+      <main class="main">
+        Я МЭЙН
+      </main>
+    {% endblock main %}
+
+    {% block footer %}
+      <footer class="footer">
+        <ul>
+          <li><a href="#" class="footer-button-1"> Статистика </a></li>
+          <li><a href="#" class="footer-button-2"> Рейтинги </a></li>
+          <li><a href="#" class="footer-button-3"> Тренажёры </a></li>
+        </ul>
+      </footer>
+    {% endblock footer %}
+    </div>
+  </body>
 </html>
