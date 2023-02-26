@@ -1,5 +1,7 @@
 from django.db import models
 
+
+# КОММЕНТАРИЙ: без связки с имеющейся моделью в приложении auth?
 class User(models.Model):
     name = models.CharField(max_length=30, verbose_name='Имя')
     surname = models.CharField(max_length=30, verbose_name='Фамилия')
@@ -11,3 +13,4 @@ class User(models.Model):
     class Meta:
         verbose_name_plural = 'Пользователи'
         ordering = ['time_registration']
+
