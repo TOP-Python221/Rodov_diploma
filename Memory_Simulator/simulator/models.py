@@ -1,8 +1,9 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
 # КОММЕНТАРИЙ: без связки с имеющейся моделью в приложении auth?
-class User(models.Model):
+class RomaUser(models.Model):
     name = models.CharField(max_length=30, verbose_name='Имя')
     surname = models.CharField(max_length=30, verbose_name='Фамилия')
     # ИСПОЛЬЗОВАТЬ: в модели ограничение задаётся только типом поля
@@ -16,3 +17,8 @@ class User(models.Model):
         verbose_name_plural = 'Пользователи'
         ordering = ['time_registration']
 
+
+class Game(models.Model):
+    scores = models.PositiveSmallIntegerField()
+    time = models.TimeField()
+    user = models.ForeignKey(User, models.CASCADE)
