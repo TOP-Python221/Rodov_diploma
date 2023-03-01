@@ -1,23 +1,11 @@
 from django.shortcuts import render
 
 
-# ИСПОЛЬЗОВАТЬ: возможно создать словарь с доступом к ключам с помощью атрибуции
-
-class DictAttr(dict):
-    def __getattribute__(self, item):
-        return self[item]
-
-menu = [
-    DictAttr({'title': 'Статистика', 'url_name': 'statistics'}),
-    DictAttr({'title': 'Рейтинги', 'url_name': 'ratings'}),
-    DictAttr({'title': 'Тренажеры', 'url_name': 'simulators'}),
-    DictAttr({'title': 'Авторизация', 'url_name': 'authorization'})
-]
-
-# {% for item in menu %}
-#   <a href="{{ item.url }}">{{ item.title }}</a>
-# {% endfor %}
-
+menu = [{'title': 'Статистика', 'url_name': 'statistics'},
+        {'title': 'Рейтинги', 'url_name': 'ratings'},
+        {'title': 'Тренажеры', 'url_name': 'simulators'},
+        {'title': 'Авторизация', 'url_name': 'authorization'}
+        ]
 
 def index_view(request):
     return render(
@@ -39,17 +27,20 @@ def registration_view(request):
         'pages/registration.html',
         {'title': 'Регистрация'}
     )
+def first_trainer(request):
+    return render(
+        request,
+    )
 
-
-def game_view(request):
-    if request.method == 'GET':
-        return render(
-            request,
-            '',
-            {}
-        )
-    elif request.method == 'POST':
-        form = GameForm(request.POST)
-        if form.is_valid():
-            scores = form.cleaned_data['scores']
-            # ...
+# def game_view(request):
+#     if request.method == 'GET':
+#         return render(
+#             request,
+#             '',
+#             {}
+#         )
+#     elif request.method == 'POST':
+#         form = GameForm(request.POST)
+#         if form.is_valid():
+#             scores = form.cleaned_data['scores']
+#             # ...
