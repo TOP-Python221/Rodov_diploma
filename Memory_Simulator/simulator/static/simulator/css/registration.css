@@ -22,3 +22,28 @@ body {
     margin: 20px;
     color: white;
 }
+
+.back-form{
+    background: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    outline: none;
+    transition: 0.3s;
+    box-shadow: 0 4px 16px #000000;
+}
+.back-form:focus{
+    border-bottom: 1px solid grey;
+}
+
+.button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #d7bb74;
+    outline: none;
+    cursor: pointer;
+    transition: .3s;
+}

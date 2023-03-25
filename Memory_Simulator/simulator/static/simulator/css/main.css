@@ -153,6 +153,7 @@ html, body{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     margin: 10px;
+    margin-left: 20px;
 }
 .menu-button-1, .menu-button-2, .menu-button-3, .menu-button-4{
     color: white;
