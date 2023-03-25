@@ -1,13 +1,11 @@
-from django.contrib.auth.models import User, AnonymousUser
+from django.contrib.auth.models import User
 from django.db import models
 
 
-#КОММЕНТАРИЙ: без связки с имеющейся моделью в приложении auth?
+# ИСПРАВИТЬ: большинство полей, которые вы объявляете в своём классе, уже есть в классе User: они наследуются от AbstractUser — таким образом в таблице, соответствующей классу RegUser, окажутся лишние столбцы, возможно с дублирующимися значениями
 class RegUser(User):
     name = models.CharField(max_length=30, verbose_name='Имя')
     surname = models.CharField(max_length=30, verbose_name='Фамилия')
-    # ИСПОЛЬЗОВАТЬ: в модели ограничение задаётся только типом поля
-    # КОММЕНТАРИЙ: если необходимо добавить дополнительное ограничение, то мы его вводим для соответствующего поля формы с помощью параметров min_value и max_value
     age = models.PositiveSmallIntegerField(verbose_name='Возраст')
     time_registration = models.DateTimeField(auto_now_add=True, verbose_name='Дата регистрации')
     last_visit = models.DateTimeField(auto_now=True, verbose_name='Последнее посещение')
@@ -16,3 +14,11 @@ class RegUser(User):
     class Meta:
         verbose_name_plural = 'Пользователи'
         ordering = ['time_registration']
+
+
+# КОММЕНТАРИЙ: наследование от класса User возможно (точнее, необходимо наследоваться от AbstractUser), но это требует дополнительного указания для фреймворка о необходимости использовать для авторизации и аутентификации ваш класс, а не встроенный: AUTH_USER_MODEL = RegUser
+#   см. https://docs.djangoproject.com/en/4.1/topics/auth/customizing/#substituting-a-custom-user-model
+
+# КОММЕНТАРИЙ: альтернативой является использование агрегации вместо наследования, то есть связь собственного класса для пользователя со встроенным с помощью models.OneToOneField
+#   см. https://docs.djangoproject.com/en/4.1/topics/auth/customizing/#extending-the-existing-user-model
+
