@@ -1,11 +1,12 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
-from .views import index_view, login_view, registration_view, first_trainer
+from .views import first_trainer, IndexView, StatisticsView, RatingsView
 
 urlpatterns = [
-    path("", index_view, name='main'),
-    path("login/", login_view, name='login'),
-    path("registration/", registration_view, name='registration'),
-    path("first_trainer/", first_trainer, name='first_trainer'),
+    path('', IndexView.as_view(), name='main'),
+    path("authorize/", include('users.urls'), name='authorize'),
+    path("find_a_couple/", first_trainer, name='couple'),
+    path("statistics/", StatisticsView.as_view(), name='statistics'),
+    path("ratings/", RatingsView.as_view(), name='ratings'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

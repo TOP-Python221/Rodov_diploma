@@ -10,6 +10,8 @@ class Mixin:
     def get_user_context(self, **kwargs):
         context = kwargs
         users = User.objects.all()
+        rate = Game.objects.all()
         context['menu'] = menu
         context['users'] = users
+        context['rate'] = rate
         return context

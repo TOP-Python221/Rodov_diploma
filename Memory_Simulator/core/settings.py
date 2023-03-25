@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'bootstrap5',
     "simulator.apps.SimulatorConfig",
     "users.apps.UsersConfig",
 ]
@@ -119,6 +120,8 @@ STATICFILES_DIRS = [
     SIMULATOR_PATH / 'static'
 ]
 LOGIN_URL = '/authorize/login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/authorize/login/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
