@@ -1,1 +1,7 @@
-{{% extends "pages/base.html" %}}
+{% extends 'pages/main.html' %}
+
+{% block main %}
+    {% for r in rate %}
+        <div>{{r}}</div>
+    {% endfor %}
+{% endblock %}

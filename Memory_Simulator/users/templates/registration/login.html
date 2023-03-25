@@ -16,14 +16,15 @@
 <!--			<input type="text" placeholder="Логин" class="log">-->
 <!--			<input type="password" placeholder="Пароль" class="pass">-->
 <!--			<a class="forgot-p" href="#">Забыли пароль?</a>-->
-			<form action="base.html" method="post">
-				{{% csrf_token %}}
+			<form action="" method="post">
+				{% csrf_token %}
 				<table cellpadding="10">
 					{{ form.as_table }}
 					<tr>
-						<td><input type="submit" value="Логин"></td>
+						<td><input type="submit" value="Войти"></td>
 					</tr>
 				</table>
+				<a class="forgot-p" href="#">Забыли пароль?</a>
 			</form>
 		</div>
 </body>

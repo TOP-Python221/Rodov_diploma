@@ -1,1 +1,11 @@
-{{% extends "pages/base.html" %}}
+{% extends 'pages/main.html' %}
+
+
+{% block main %}
+    <div class="main">{{ user }}</div>
+    <div class="main">{{ stat.scores }}</div>
+    <div class="main">{{ stat.time }}</div>
+    <div class="main">{{ stat.user }}</div>
+{% endblock %}
+
+
