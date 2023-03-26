@@ -2,10 +2,11 @@
 
 
 {% block main %}
-    <div class="main">{{ user }}</div>
-    <div class="main">{{ stat.scores }}</div>
-    <div class="main">{{ stat.time }}</div>
-    <div class="main">{{ stat.user }}</div>
+    {% if user.is_authenticated %}
+        <div class="main">{{ user }}</div>
+    {% else %}
+
+    {% endif %}
 {% endblock %}
 
 

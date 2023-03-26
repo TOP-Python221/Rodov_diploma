@@ -3,7 +3,8 @@ from .models import *
 menu = [{'title': 'Статистика', 'url_name': 'statistics'},
         {'title': 'Рейтинги', 'url_name': 'ratings'},
         {'title': 'Тренажеры', 'url_name': 'simulators'},
-        {'title': 'Авторизация', 'url_name': 'authorization'}
+        {'title': 'Авторизация', 'url_name': 'authorization'},
+        {'title': 'Главная страница', 'url_name': 'main'},
         ]
 
 class Mixin:

@@ -126,6 +126,13 @@ html, body{
     height: 100%;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+.single-top-img{
+    width: 40%;
+    box-shadow: 5px 5px 5px 3px #ccc;
+    margin: 0 20px 20px 0;
+}
+
 .wrapper{
     min-height: 100%;
     display: flex;
