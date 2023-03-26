@@ -2,6 +2,8 @@ from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.contrib.auth.models import User
 from django.forms import *
 
+from users.models import RegUser
+
 
 class UserRegisterForm(UserCreationForm):
     username = CharField(label='Логин', widget=TextInput())
@@ -18,7 +20,7 @@ class UserRegisterForm(UserCreationForm):
     })
 
     class Meta:
-        model = User
+        model = RegUser
         fields = ['username', 'email', 'password1', 'password2']
         field_classes = {'username': UsernameField}
 

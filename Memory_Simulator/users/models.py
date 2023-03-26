@@ -1,15 +1,24 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 
+from users.manager import CustomUserManager
 
-# ИСПРАВИТЬ: большинство полей, которые вы объявляете в своём классе, уже есть в классе User: они наследуются от AbstractUser — таким образом в таблице, соответствующей классу RegUser, окажутся лишние столбцы, возможно с дублирующимися значениями
-class RegUser(User):
-    name = models.CharField(max_length=30, verbose_name='Имя')
-    surname = models.CharField(max_length=30, verbose_name='Фамилия')
+
+class RegUser(AbstractUser):
+    email = models.EmailField('email address', unique=True)
     age = models.PositiveSmallIntegerField(verbose_name='Возраст')
-    time_registration = models.DateTimeField(auto_now_add=True, verbose_name='Дата регистрации')
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     last_visit = models.DateTimeField(auto_now=True, verbose_name='Последнее посещение')
-    is_online = models.BooleanField(default=False, verbose_name='В сети')
+
+    objects = CustomUserManager
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return self.email
+
 
     class Meta:
         verbose_name_plural = 'Пользователи'
