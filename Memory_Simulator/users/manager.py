@@ -3,7 +3,8 @@ from django.contrib.auth.base_user import BaseUserManager
 
 class CustomUserManager(BaseUserManager):
     """
-    Изменённая пользовательская модель, где в качестве уникального идентификационного ключа используется почта вместо имени пользователя.
+    Изменённая пользовательская модель, где в качестве уникального идентификационного ключа используется почта вместо
+    имени пользователя.
     """
     def create_user(self, email, password, **extra_fields):
         """

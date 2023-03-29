@@ -6,6 +6,8 @@ from django.views.generic import FormView, CreateView
 from users.forms import UserRegisterForm
 from django.contrib.auth.models import User
 
+from users.models import RegUser
+
 
 class RegisterView(CreateView):
     form_class = UserRegisterForm
@@ -18,7 +20,7 @@ class RegisterView(CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        users = User.objects.all()
+        users = RegUser.objects.all()
         context['users'] = users
         return context
 

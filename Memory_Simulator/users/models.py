@@ -1,17 +1,20 @@
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import PermissionsMixin, AbstractBaseUser
 from django.db import models
+from django.utils import timezone
 
-from users.manager import CustomUserManager
+from .manager import CustomUserManager
+from django.conf import settings
 
 
-class RegUser(AbstractUser):
+class RegUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField('email address', unique=True)
     age = models.PositiveSmallIntegerField(verbose_name='Возраст')
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     last_visit = models.DateTimeField(auto_now=True, verbose_name='Последнее посещение')
+    date_joined = models.DateTimeField(default=timezone.now)
 
-    objects = CustomUserManager
+    objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -22,7 +25,7 @@ class RegUser(AbstractUser):
 
     class Meta:
         verbose_name_plural = 'Пользователи'
-        ordering = ['time_registration']
+        ordering = ['date_joined']
 
 
 # КОММЕНТАРИЙ: наследование от класса User возможно (точнее, необходимо наследоваться от AbstractUser), но это требует дополнительного указания для фреймворка о необходимости использовать для авторизации и аутентификации ваш класс, а не встроенный: AUTH_USER_MODEL = RegUser
