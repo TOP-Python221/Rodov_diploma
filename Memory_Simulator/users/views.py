@@ -1,12 +1,9 @@
-from django.contrib.auth import logout
-from django.shortcuts import redirect
+from django.contrib.auth import get_user_model, logout
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import FormView, CreateView
+from django.views.generic import CreateView
 
 from users.forms import UserRegisterForm
-from django.contrib.auth.models import User
-
-from users.models import RegUser
 
 
 class RegisterView(CreateView):
@@ -20,29 +17,20 @@ class RegisterView(CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        users = RegUser.objects.all()
+        users = get_user_model().objects.all()
         context['users'] = users
         return context
 
 
-def logout_user(request):
+def login_view(request):
+    return render(
+        request,
+        'registration/login.html',
+        {'title': 'Авторизация'}
+    )
+
+
+def logout_view(request):
     logout(request)
     return redirect('login')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

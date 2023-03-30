@@ -3,13 +3,10 @@ from django.contrib.auth.base_user import BaseUserManager
 
 class CustomUserManager(BaseUserManager):
     """
-    Изменённая пользовательская модель, где в качестве уникального идентификационного ключа используется почта вместо
-    имени пользователя.
+    Изменённая пользовательская модель, где в качестве уникального идентификационного ключа используется почта вместо имени пользователя.
     """
     def create_user(self, email, password, **extra_fields):
-        """
-        Создаёт и сохраняет пользователя с полученной почтой и паролем.
-        """
+        """Создаёт и сохраняет пользователя с полученной почтой и паролем."""
         if not email:
             raise ValueError('Email должен быть установлен')
         email = self.normalize_email(email)
@@ -19,9 +16,7 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password, **extra_fields):
-        """
-        Создаёт и сохраняет суперПользователя с полученной почтой и паролем.
-        """
+        """Создаёт и сохраняет суперПользователя с полученной почтой и паролем."""
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_active', True)
@@ -31,3 +26,4 @@ class CustomUserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('is_superuser для СуперПользователя должен быть True')
         return self.create_user(email, password, **extra_fields)
+
