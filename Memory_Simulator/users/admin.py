@@ -2,20 +2,29 @@ from typing import Set
 
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
 
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import RegUser
 
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
-
-
-admin.site.unregister(User)
-
-
-@admin.register(User)
-class CustomUserAdmin(UserAdmin):
+    form = CustomUserChangeForm
+    model = RegUser
+    list_display = ('email', 'is_staff', 'is_active',)
+    list_filter = ('email', 'is_staff', 'is_active',)
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active')}),
+    )
+    add_fieldsets = (
+        (None,
+         {'classes': ('wide',),
+          'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active')}
+         ),
+    )
+    search_fields = ('email',)
+    ordering = ('email',)
     readonly_fields = [
         'date_joined',
     ]
@@ -67,10 +76,14 @@ class CustomUserAdmin(UserAdmin):
         self.message_user(request, 'Activated {} users.'.format(cnt))
         activate_users.short_description = 'Activate Users'  # type: ignore
 
-    # Скрыть activate_users() от пользователей без разрешения на изменение, переопределите get_actions().
+    # Скрыть activate_users() от пользователей без разрешения на изменение, переопределить get_actions().
     def get_actions(self, request):
         actions = super().get_actions(request)
         if not request.user.has_perm('auth.change_user'):
             del actions['activate_users']
 
         return actions
+
+
+# admin.site.unregister(User)
+admin.site.register(RegUser, CustomUserAdmin)
