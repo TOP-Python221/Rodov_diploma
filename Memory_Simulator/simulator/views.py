@@ -5,22 +5,12 @@ from django.views.generic import ListView, DetailView
 from simulator.models import Game
 from simulator.utils import Mixin
 
-menu = [{'title': 'Статистика', 'url_name': 'statistics'},
-        {'title': 'Рейтинги', 'url_name': 'ratings'},
-        {'title': 'Тренажеры', 'url_name': 'simulators'},
-        {'title': 'Авторизация', 'url_name': 'authorization'}
-        ]
-
-
-class IndexView(ListView):
-    model = Game
-    template_name = 'pages/main.html'
-    context_object_name = 'menu'
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        context['menu'] = menu
-        return context
+menu = [
+    {'title': 'Статистика', 'url_name': 'statistics'},
+    {'title': 'Рейтинги', 'url_name': 'ratings'},
+    {'title': 'Тренажеры', 'url_name': 'simulators'},
+    {'title': 'Авторизация', 'url_name': 'authorization'}
+]
 
 
 class StatisticsView(Mixin, ListView):
@@ -39,7 +29,7 @@ class StatisticsView(Mixin, ListView):
         return redirect(self.success_url)
 
 
-class RatingsView(Mixin, ListView):
+class RatingsView(ListView):
     model = Game
     template_name = 'pages/ratings.html'
     context_object_name = 'rate'
@@ -47,26 +37,19 @@ class RatingsView(Mixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        c_def = self.get_user_context(title='Рейтинги')
-        return dict(list(context.items()) + list(c_def.items()))
+        # c_def = self.get_user_context(title='Рейтинги')
+        # return dict(list(context.items()) + list(c_def.items()))
+        return context
 
     def form_valid(self, form):
         form.save()
         return redirect(self.success_url)
 
 
-def index_view(request):
-    return render(
-        request,
-        'pages/main.html',
-        {'title': 'Главная страница', 'menu': menu}
-    )
-
-
 def login_view(request):
     return render(
         request,
-        'pages/login.html',
+        'registration/login.html',
         {'title': 'Авторизация'}
     )
 
