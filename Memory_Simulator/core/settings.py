@@ -85,7 +85,25 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
-    }
+    },
+    # 'posts': {
+    #     'NAME': BASE_DIR / 'post_data.sqlite3',  # BASE_DIR / "db.sqlite3"
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'USER': 'sqlite_post',
+    #     'PASSWORD': 'post_123',
+    # },
+    # 'simulators': {
+    #     'NAME': BASE_DIR / 'simulator_data.sqlite3',
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'USER': 'sqlite_simulator',
+    #     'PASSWORD': 'simulator_123',
+    # },
+    # 'users': {
+    #     'NAME': BASE_DIR / 'user_data.sqlite3',
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'USER': 'sqlite_user',
+    #     'PASSWORD': 'user_123',
+    # },
 }
 
 

@@ -1,4 +1,4 @@
-from django.contrib.auth import logout, get_user_model
+from django.contrib.auth import logout, get_user_model, login
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import FormView, CreateView
@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from users.models import RegUser
 
 
-class RegisterView(Mixin, CreateView):
+class RegisterView(CreateView):
     form_class = UserRegisterForm
     template_name = 'registration/register.html'
     success_url = reverse_lazy('login')
@@ -20,7 +20,8 @@ class RegisterView(Mixin, CreateView):
         return context
 
     def form_valid(self, form):
-        form.save()
+        user = form.save()
+        login(self.request, user)
         return redirect(self.success_url)
 
 
@@ -34,7 +35,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('/')
 
 
 

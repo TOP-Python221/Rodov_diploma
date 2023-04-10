@@ -21,8 +21,8 @@ class StatisticsView(Mixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        c_def = self.get_user_context(title='Статистика')
-        return dict(list(context.items()) + list(c_def.items()))
+        # c_def = self.get_user_context(title='Статистика')
+        return context
 
     def form_valid(self, form):
         form.save()
