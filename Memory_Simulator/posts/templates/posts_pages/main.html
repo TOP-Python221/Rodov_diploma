@@ -32,11 +32,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
               <a href="{% url 'login' %}" class="footer-button-2" style="text-decoration: none;"><i class="fa fa solid fa-signal"></i> Статистика </a>
 
               <a href="{% url 'login' %}" class="footer-button-3"  style="text-decoration: none;"><i class="fa fa solid fa-star"></i> Рейтинги </a>
+
             {% endif %}
 
 
-            {% if user.get_is_authenticated %}
-            <a href="{% url 'logout' %}" class="footer-button-3" style="text-decoration: none;"><i class="fa fa solid fa-user"></i>{{ user.username }}</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="footer-button-3" style="text-decoration: none;"><i class="fa fa solid fa-user"></i> {{ user.username }}</a>
+            <a href="{% url 'add_post' %}" class="footer-button-3"  style="text-decoration: none;"><i class="fa fa solid fa-star"></i> Добавить статью </a>  <!-- Добавить в is_authenticated -->
             {% else %}
             <div>
               <a href="{% url 'login' %}" class="footer-button-3" style="text-decoration: none;"><i class="fa fa solid fa-user"></i> Авторизация </a> | <a href="{% url 'register' %}" class="footer-button-3" style="text-decoration: none; padding: 35px;"> Регистрация </a>
@@ -48,12 +50,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
 
     {% block main %}
       <main class="main">
-        <img class="single-top-img" align="left" src="{% static 'simulator/image/brain.jpg' %}" alt="Картинка сломалась :`(">
-        <a style="text-decoration: none; color: grey;" target="_blank" href="https://www.bragazeta.ru/news/2020/05/31/zachem-nuzhny-trenazhyory-dlya-mozga-i-chto-oni-iz-sebya-predstavlyayut/#:~:text=Тренажёры%20позволяют%20развивать%20полезные%20качества.,а%20также%20переключение%20между%20ними">Источник</a></p>
         {%for p in posts%}
         <h1>{{p.title}}</h1>
-        <p>{{p.content}}</p>
-          <p><a href="{{ p.get_absolute_url }}">Read_Post</a> </p>
+          <p>{{p.content|linebreaks|truncatechars:310}}</p>
+          <p><a class="read_button" style="text-decoration: none;" href="{{ p.get_absolute_url }}">Читать пост</a> </p>
+          {% if post.photo %}
+          <p><img class="image" align="left" alt="Картинка заболела >_<" src="{{ post.photo.url }}"></p>
+          {% endif %}
         {%endfor%}
 
       </main>
@@ -66,11 +69,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
             {% endif %}
           <div><a href="https://vk.com/id139174368" target="_blank" class="footer-button-3" style="text-decoration: None;"><i class="fa fa solid fa-at"></i> Site by RodovR </a></div>
 
-          {%for u in user%}
-            {% if u.is_superuser %}
 
-            {% endif %}
-          {%endfor%}
       </footer>
     {% endblock footer %}
     </div>

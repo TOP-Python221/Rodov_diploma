@@ -1,0 +1,11 @@
+{% extends 'posts_pages/main.html' %}
+
+{% block main %}
+    <h1>{{ post.title }}</h1>
+
+{% if post.photo %}
+<img class="image" align="left" alt="Картинка заболела >_<" src="{{ post.photo.url }}">
+{% endif %}
+
+{{post.content|linebreaks}}
+{% endblock %}
