@@ -98,6 +98,16 @@ p{
     margin: 10px;
 }
 
+input, textarea{
+    border: solid 1px;
+    align: right;
+}
+
+button{
+    border: solid 1px;
+    background-color: grey;
+}
+
 .single-top-img{
     width: 40%;
     box-shadow: 5px 5px 5px 3px #ccc;
@@ -141,11 +151,14 @@ p{
 .main{
     padding: 30px;
     flex: 1 1 auto;
+    padding-bottom: 90px;
 }
 
 .read_button{
-    color: grey;
-    border-box:;
+    color: #cfd4d8;
+    border-radius:500%
+    border: solid 1px;
+    background-color: #7270e4;
 }
 
 .footer{
@@ -158,4 +171,5 @@ p{
     padding: 20px;
     text-align: left;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    z-index: 2;
 }

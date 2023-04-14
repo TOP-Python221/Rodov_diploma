@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -15,50 +15,50 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     <title>{{ title }}</title>
   </head>
 
-  <body>
-    <div class="wrapper">
-      {% block header %}
-        <header class="header">
-          <div class="header-logo">
-            <a href="{% url 'main' %}" style="text-decoration: none;"> MS</a>
-          </div>
-          <div class="header-menu">
-            <a href="{% url 'couple' %}" class="footer-button-1" style="text-decoration: none;"><i class="fa fa solid fa-brain"></i> Тренажеры</a>
-            {% if user.is_authenticated %}
-              <a href="{% url 'statistics' %}" class="footer-button-2" style="text-decoration: none;"><i class="fa fa solid fa-signal"></i> Статистика </a>
+<body>
+<div class="wrapper">
+    {% block header %}
+  <header class="header">
+    <div class="header-logo">
+      <a href="{% url 'main' %}" style="text-decoration: none; color: white;"> MS</a>
+    </div>
+    <div class="header-menu">
+      <a href="{% url 'couple' %}" class="footer-button-1" style="text-decoration: none;"><i class="fa fa solid fa-brain"></i> Тренажеры</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'statistics' %}" class="footer-button-2" style="text-decoration: none;"><i class="fa fa solid fa-signal"></i> Статистика </a>
 
-              <a href="{% url 'ratings' %}" class="footer-button-3"  style="text-decoration: none;"><i class="fa fa solid fa-star"></i> Рейтинги </a>
-            {% else %}
-              <a href="{% url 'login' %}" class="footer-button-2" style="text-decoration: none;"><i class="fa fa solid fa-signal"></i> Статистика </a>
+      <a href="{% url 'ratings' %}" class="footer-button-3"  style="text-decoration: none;"><i class="fa fa solid fa-star"></i> Рейтинги </a>
+      {% else %}
+      <a href="{% url 'login' %}" class="footer-button-2" style="text-decoration: none;"><i class="fa fa solid fa-signal"></i> Статистика </a>
 
-              <a href="{% url 'login' %}" class="footer-button-3"  style="text-decoration: none;"><i class="fa fa solid fa-star"></i> Рейтинги </a>
+      <a href="{% url 'login' %}" class="footer-button-3"  style="text-decoration: none;"><i class="fa fa solid fa-star"></i> Рейтинги </a>
+      {% endif %}
 
-            {% endif %}
-
-
-            {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}" class="footer-button-3" style="text-decoration: none;"><i class="fa fa solid fa-user"></i> {{ user.username }}</a>
-            <a href="{% url 'add_post' %}" class="footer-button-3"  style="text-decoration: none;"><i class="fa fa solid fa-star"></i> Добавить статью </a>  <!-- Добавить в is_authenticated -->
-            {% else %}
-            <div>
-              <a href="{% url 'login' %}" class="footer-button-3" style="text-decoration: none;"><i class="fa fa solid fa-user"></i> Авторизация </a> | <a href="{% url 'register' %}" class="footer-button-3" style="text-decoration: none; padding: 35px;"> Регистрация </a>
-            </div>
-            {% endif %}
-          </div>
-        </header>
+      {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}" class="footer-button-3" style="text-decoration: none;"><i class="fa fa solid fa-user"></i> {{ user.username }}</a>
+      {% if user.is_superuser %}
+      <a href="{% url 'add_post' %}" class="footer-button-3"  style="text-decoration: none;"><i class="fa-solid fa-newspaper"></i> Добавить статью </a>
+      {% endif %}
+      {% else %}
+      <div>
+        <a href="{% url 'login' %}" class="footer-button-3" style="text-decoration: none;"><i class="fa fa solid fa-user"></i> Авторизация </a> | <a href="{% url 'register' %}" class="footer-button-3" style="text-decoration: none; padding: 35px;"> Регистрация </a>
+      </div>
+      {% endif %}
+    </div>
+  </header>
       {% endblock header %}
 
-    {% block main %}
-      <main class="main">
+      {% block main %}
+        <main class="main">
         {%for p in posts%}
         <h1>{{p.title}}</h1>
-          <p>{{p.content|linebreaks|truncatechars:310}}</p>
-          <p><a class="read_button" style="text-decoration: none;" href="{{ p.get_absolute_url }}">Читать пост</a> </p>
-          {% if post.photo %}
-          <p><img class="image" align="left" alt="Картинка заболела >_<" src="{{ post.photo.url }}"></p>
-          {% endif %}
+        <p align="right" style="color: grey;">{{ p.time_create }}</p>
+        {% if p.photo %}
+        <img class="image" style="box-shadow: 10px 10px 20px 5px #797b7d;" alt="Картинка заболела >_<" src="{{ p.photo.url }}">
+        {% endif %}
+        <p>{{p.content|linebreaks|truncatechars:310}}</p>
+        <p><a class="read_button" style="text-decoration: none;" href="{{ p.get_absolute_url }}">Читать пост</a> </p>
         {%endfor%}
-
       </main>
     {% endblock main %}
 

@@ -2,6 +2,9 @@ from django.contrib.auth.models import PermissionsMixin, AbstractBaseUser, UserM
 from django.db import models
 from django.utils import timezone
 
+from users.manager import CustomUserManager
+
+
 # from .manager import CustomUserManager
 
 
@@ -14,7 +17,7 @@ class RegUser(AbstractBaseUser, PermissionsMixin):
     last_visit = models.DateTimeField(auto_now=True, verbose_name='Последнее посещение')  # УДАЛИТЬ
     date_joined = models.DateTimeField(default=timezone.now)
 
-    # objects = UserManager()
+    objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

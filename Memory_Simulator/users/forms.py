@@ -8,6 +8,7 @@ from users.models import RegUser
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(label='Имя пользователя', widget=forms.TextInput())
     email = forms.EmailField(
+        label='Почта',
         help_text='Enter your valid e-mail address.',
         error_messages={
             'invalid': 'Enter a correct e-mail address!',
@@ -18,7 +19,7 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields = ['username', 'age', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'age', 'password1', 'password2']
         field_classes = {'username': UsernameField}
 
     def __init__(self, *args, **kwargs):

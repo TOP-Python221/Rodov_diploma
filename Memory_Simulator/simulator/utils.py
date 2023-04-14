@@ -7,7 +7,7 @@ menu = [
     {'title': 'Рейтинги', 'url_name': 'ratings'},
     {'title': 'Тренажеры', 'url_name': 'simulators'},
     {'title': 'Авторизация', 'url_name': 'authorization'},
-    {'title': 'Главная страница', 'url_name': 'main'},
+    {'title': 'Добавление статьи', 'url_name': 'add_post'},
 ]
 
 

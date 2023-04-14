@@ -22,22 +22,29 @@
 	<div> - </div>
 	<div class="menu">
 		<div style="color: white;" class="counter"> КОЛИЧЕСТВО НАЖАТИЙ:
-			<span style="color: white; " id="game-id">0</span>
+			<form action="{% url 'couple' %}" method="post">
+        		{% csrf_token %}
+        		{{ form.as_p }}
+				<p><input type='hidden' id="clicks-field" value="0" /></p>
+				<span style="color: white;">Секундомер:
+					<h1><time id="time">00:00:00</time></h1>
+					<p><input type='hidden' id="time" value="0" /></p>
+				</span>
+			</form>
 		</div>
 
-		<span style="color: white;">
-			ТАЙМЕР:
-			<span><time id="timer">00:00:00</time></span>
-		</span>
 	</div>
 	<div> - </div>
 
 	<div class="wrap" style="color: white;" onclick="counter()">
-		<div class="game"></div>
+		<div class="game" id="game"></div>
 		<div class="modal-overlay">
 			<div class="modal">
-				<h2 class="winner">Победа!</h2>
-				<button class="restart">Сыграем ещё?</button>
+				<form action="{% url 'couple' %}" method="post">
+				{% csrf_token %}
+					<h2 class="winner">Победа!</h2>
+					<input type='submit' class="restart" value="Сыграем ещё?" />
+				</form>
 			</div>
 		</div>
   </div>
